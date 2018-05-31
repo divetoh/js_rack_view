@@ -1,0 +1,59 @@
+.rackview_svg {
+  border: #789 solid 1px;
+  background-color: #abc;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.rackview .selected {
+  stroke: #55f;
+  fill: #55f1; 
+  stroke-linejoin: round;
+  stroke-width: 3;
+}
+
+.center{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+hr {
+  height: 2px;
+  border-width: 0px;
+  background-color: #abc;
+}
+
+select,input {
+  background-color: #cddef8;
+  border: #89a solid 1px;
+  margin: 2px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.sect_add select {
+  width: 230px;
+  margin-bottom: 8px;
+}
+
+.sect_add .label {
+  display: inline-block;
+  width: 60px;
+}
+
+
+#b_div input {
+  width: 38px;
+}
+#b_div input:disabled{
+  width: 38px;
+  background-color: #bbb;
+}
+
+table th {
+  text-align: right;
+}

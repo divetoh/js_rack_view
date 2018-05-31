@@ -1,0 +1,207 @@
+<html>
+<script src="../lib/js_rack_lib.js"></script>
+<script src="../lib/js_rack_view.js"></script>
+<link rel="stylesheet" type="text/css" href="main.css">
+<body>
+<div id=rack_test style="width:710px; height:950px; float:left;"></div>
+<div id=rack_control style="width:300px; height:950px; margin-left: 720px;">
+<div>
+  <div>
+    <input type=button value="Fit by Size" id=b_fitbysize>
+    <input type=button value="Download SVG" id=b_download>
+  </div>
+  <hr>
+  <div class=sect_add>
+    <div class=center><b>Add object</b></div>
+    <div class=label>Vendor:</div><select id=s_vendor></select><br>
+    <div class=label>Object:</div><select id=s_item></select><br>
+    <div class=label>Rack:</div><select id=s_rack>
+      <option value=0>Rack1
+      <option value=1>Rack2
+    </select></br>
+    Unit:<br>
+    <div id=b_div></div>
+  </div>
+  <hr>
+  <div id=div_selected style="display:none">
+    <div class=center><b>Object info</b></div>
+    <table>
+      <tr><th>Rack:</th><td id=ds_rack></td></tr>
+      <tr><th>Unit:</th><td id=ds_unit></td></tr>
+      <tr><th>Id:</th><td id=ds_ID></td></tr>
+      <tr><th>Vendor:</th><td id=ds_vendor></td></tr>
+      <tr><th>Name:</th><td id=ds_name></td></tr>
+      <tr><th>Variant:</th><td id=ds_var></td></tr>
+    </table>
+    <input type=button value="Remove" id=b_remove>
+  </div>
+</div>
+
+<script type="text/javascript">
+  window.onload = function() {
+    var sel_vendor = document.getElementById('s_vendor');
+    var sel_item = document.getElementById('s_item');
+    var sel_rack = document.getElementById('s_rack');
+    var s_rid = undefined;
+    var s_uid = undefined;
+    var s_id = undefined;
+    var rack = [{
+      2: 'apc_sua3000rm2u',
+      4: 'apc_sua3000rm2u',
+      5: 'apc_envmanager',
+      11: 'misc_ppanel24',
+      12: 'cisco_2960_24ttl',
+      14: 'misc_ppanel24',
+      15: 'cisco_2960_24ttl',
+      17: 'misc_ppanel24',
+      18: 'cisco_2960_24ttl',
+      20: 'misc_ppanel24',
+      21: 'cisco_2960_24ttl',
+      23: 'misc_ppanel24',
+      24: 'cisco_2960_24ttl',
+      28: 'misc_fibercross_sc_8_8_8',
+      29: 'misc_organizer',
+      30: 'misc_fibercross_fc_8_0',
+      33: 'cisco_3845',
+      36: 'cisco_3845',
+      37: 'cisco_2960_8tcl',
+      38: 'misc_organizer',      
+      39: 'cisco_2960_8tcl'
+    }, {
+      2: 'eaton_PW9130_EBM3000RM',
+      4: 'eaton_PW9130_3000RM',
+      6: 'eaton_PW9130_EBM3000RM',
+      8: 'eaton_PW9130_3000RM',
+      10: 'eaton_PW9130_EBM3000RM',
+      12: 'eaton_PW9130_3000RM',
+      18: 'dell_pe2950iii',
+      20: 'dell_pe2950iii',
+      22: 'dell_pe2950iii',
+      23: 'netgear_rn3138',
+      24: 'netgear_rn3138',
+      25: 'ibm_3250m3_35',
+      26: 'ibm_3250m3_35',
+      30: 'ibm_3250m5',
+      31: 'ibm_3250m5',
+      32: 'ibm_3250m5',
+      33: 'ibm_3250m5',
+      34: 'ibm_3550m4',
+      35: 'ibm_3550m4',
+      36: 'ibm_3550m4',
+      37: 'ibm_3550m4',
+      38: 'netgear_rn3138',
+      39: 'netgear_rn3138'
+    },];
+
+    // Create rack view
+    var rv = new jsRackView({
+      elem: document.getElementById('rack_test'),
+      rack_style: "rack42_solid",
+      rack: rack,
+      onSelect: onSelect,
+      width: 700,
+      scale: 2
+    });
+    rv.fit_all();
+    
+    // Create add buttons with unit numbers
+    var b_div = document.getElementById('b_div');
+    for( var i=1;i<43;i++){
+      var opt = document.createElement('input');
+      opt.type = "button";
+      opt.value = i;
+      opt.id = "b_add_"+i;
+      opt.dataset.unit = i;
+      opt.onclick = b_add;
+      b_div.appendChild(opt);
+    }
+
+    // Fill list of vendors
+    var vendors = [];
+    for(var i in rackHW){
+      if ((rackHW[i].vendor===undefined) || (vendors.indexOf(rackHW[i].vendor)!=-1)) continue;
+      vendors.push(rackHW[i].vendor);
+      var opt = document.createElement('option');
+      opt.value = rackHW[i].vendor;
+      opt.innerHTML = rackHW[i].vendor;
+      sel_vendor.appendChild(opt);
+    }
+    sel_vendor.selectedIndex = 0;
+    fill_vendor_objects();
+    
+    // Calc free units for selected object in selected rack
+    function calc_avail_units(){
+      var free = rv.get_free_unit(sel_rack.value)
+      var sz = rackHW[sel_item.value].height;
+      var last_unit=0;
+      for(var i=1;i<43;i++){
+        var but = document.getElementById('b_add_'+i);
+        if (free[i]!=undefined) {
+          if ((i-last_unit>=sz)&&(i>=sz)) but.disabled = false;
+          else but.disabled = true;
+        } else {
+          last_unit = i;
+          but.disabled = true;
+        }
+      }
+    }
+    
+    // Fill list of object for selected vendor
+    function fill_vendor_objects(){
+      vendor = sel_vendor.value;
+      sel_item.innerHTML = "";
+      for(var i in rackHW){
+        if ((rackHW[i].vendor===undefined) || (rackHW[i].vendor != vendor)) continue;
+        var opt = document.createElement('option');
+        opt.value = i;
+        opt.innerHTML = rackHW[i].name + " " + rackHW[i].variant + " (" + rackHW[i].height + " unit)";
+        sel_item.appendChild(opt);
+      }
+      calc_avail_units();
+    }
+    
+    // User add object
+    function b_add(){
+      rv.setItem(sel_rack.value, this.dataset.unit, sel_item.value);
+      calc_avail_units();
+    }
+    
+    // User remove object
+    function b_remove(){
+      if (s_rid===undefined) return;
+      rv.removeItem(s_rid, s_uid, s_id);
+      calc_avail_units();
+    }
+
+    // User select object   
+    function onSelect(rid, uid, name){
+      if (rid===undefined){
+    	s_rid = undefined;
+    	s_uid = undefined;
+        s_id = undefined;
+	document.getElementById('div_selected').style.display='none';
+	return;
+      }
+      s_rid = rid;
+      s_uid = uid;
+      s_id = name;
+      document.getElementById('div_selected').style.display='block';
+      document.getElementById('ds_rack').innerHTML=parseInt(rid)+1;
+      document.getElementById('ds_unit').innerHTML=uid;
+      document.getElementById('ds_ID').innerHTML=name;
+      document.getElementById('ds_vendor').innerHTML=rackHW[name].vendor;
+      document.getElementById('ds_name').innerHTML=rackHW[name].name;
+      document.getElementById('ds_var').innerHTML=rackHW[name].variant;
+    };
+    
+    document.getElementById('b_fitbysize').onclick = rv.fit_all;
+    document.getElementById('b_download').onclick = rv.save;
+    document.getElementById('b_remove').onclick = b_remove;
+    sel_vendor.onchange = fill_vendor_objects;
+    sel_item.onchange = calc_avail_units;
+    sel_rack.onchange = calc_avail_units;
+  };
+
+</script>
+</body>
+</html>

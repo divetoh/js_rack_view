@@ -1,0 +1,55 @@
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="1052" width="744.1" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" enable-background="new">
+<g>
+<g stroke-linejoin="round" stroke="#000" stroke-width="2">
+<path d="m-21.65 12.5v-5l12.99-12.5v10l-8.66 5v10l-4.33 2.5z" fill="#c8c8c8"/>
+<path d="m-8.66-5 8.66 5v10l-8.66-5z" fill="#fff"/>
+<path d="m-12.99 17.5 12.99-7.5v10l-12.99 7.5z" fill="#c8c8c8"/>
+<path d="m-21.65 12.5 8.66-5 4.33 2.5c1.443.8333 2.887 1.667 4.33 2.5l-8.66 5z" fill="#f5f5f5"/>
+<path d="m-12.99 27.5-8.66-5v-10l8.66 5z" fill="#fff"/>
+</g>
+<path stroke-linejoin="round" d="m-17.84 11.64 5.758 3.596v-2.379c-3.085-.7418-3.048-1.108-5.758-3.596z" stroke="#3771c8" stroke-width="2" fill="#3771c8"/>
+<text font-size="3.254px" line-height="125%" transform="matrix(1 .5774 0 1 0 0)" style="word-spacing:0px;letter-spacing:0px" y="30.998354" x="-20.253603" font-family="Sans" xml:space="preserve" fill="#000000"><tspan y="30.998354" x="-20.253603">IBM</tspan></text>
+<g stroke-linejoin="round" stroke="#000" stroke-width="2">
+<path d="m-8.66 5 8.66-5l173.2 100-8.66 5z" fill="#f5f5f5"/>
+<path d="m164.5 105v20l8.66-5v-20z" fill="#c8c8c8"/>
+<path d="m-8.66 5 173.2 100v20l-173.2-100z" fill="#fff"/>
+</g>
+<g stroke="#000" stroke-width="1px" fill="#c8c8c8">
+<path d="m-5.92 9.06.000010 15 25.98 15-.000005-15z"/>
+<path d="m22.04 25.27.000010 15 25.98 15-.000005-15z"/>
+<path d="m50 41.48.00001 15 25.98 15-.000005-15z"/>
+<path d="m77.92 57.69.00001 15 25.98 15v-15z"/>
+</g>
+<g stroke-width="1px">
+<path d="m161.1 116.2-55.5-32.08.00001 4.542 55.5 32.08v-4.542" stroke="#808080" fill="#fff"/>
+<path d="m125.5 90.29.00001 3.218 31.64 18.11-.00001-3.218z" stroke="#808080" fill="#fff"/>
+<path d="m158.5 109.3.00001 3.218 2.682 1.53-.00001-3.218z" stroke="#3771c8" fill="#3771c8"/>
+</g>
+<ellipse stroke-linejoin="round" rx=".8462" ry=".6828" stroke="#0f0" transform="matrix(.8069 .5907 0 1 0 0)" cy="-.7150" cx="161.2" stroke-width="1.148" fill="#0f0"/>
+<path d="m140.2 99.8.00001 1.251 1.043.5951-.00001-1.251z" stroke="#00f" stroke-width=".3888px" fill="#00f"/>
+<g stroke="#808080">
+<g stroke-linejoin="round">
+<path d="m107.1 80.8 8.205 4.737-1.176 1.556-5.705-3.294z" stroke-width=".6283" fill="#00f"/>
+<path d="m108.7 80.24 8.108 4.493-1.39.5957-8.108-4.493z" fill="#808080"/>
+<path d="m114.3 86.97.9597-1.522 1.688-.6619-.8936 1.291z" stroke-width="1px" fill="#808080"/>
+</g>
+<path d="m125.4 86.3.0331 2.093 5.462 3.119v-2.09z" stroke-width="1px" fill="#fff"/>
+<path d="m133.1 90.74.0331 2.093 5.462 3.119v-2.09z" stroke-width="1px" fill="#fff"/>
+</g>
+<text font-size="3.254px" line-height="125%" transform="matrix(1 .5774 0 1 0 0)" style="word-spacing:0px;letter-spacing:0px" y="15.5376" x="106.03552" font-family="Sans" xml:space="preserve" fill="#000000"><tspan y="15.5376" x="106.03552">x3550 M4</tspan></text>
+<g stroke-linejoin="round" stroke="#000" stroke-width="2">
+<path d="m173.2 100 8.66 5v10l-8.66-5z" fill="#fff"/>
+<path d="m160.2 117.5 8.66-5 4.33 2.5 4.33-2.5 4.33 2.5-12.99 7.5z" fill="#f5f5f5"/>
+<path d="m168.9 132.5-8.66-5v-10l8.66 5z" fill="#fff"/>
+</g>
+<path stroke-linejoin="round" d="m164 116.6 5.758 3.596v-2.379c-3.085-.7418-3.048-1.108-5.758-3.596z" stroke="#3771c8" stroke-width="2" fill="#3771c8"/>
+<path stroke-linejoin="round" d="m168.9 122.5v-5l12.99-12.5v10l-8.66 5v10l-4.33 2.5z" stroke="#000" stroke-width="2" fill="#c8c8c8"/>
+<text font-size="3.254px" transform="matrix(1 .5774 0 1 0 0)" line-height="125%" style="word-spacing:0px;letter-spacing:0px" xml:space="preserve" y="31.358522" x="161.63452" font-family="Sans" fill="#000000"><tspan y="31.358522" x="161.63452">IBM</tspan></text>
+<g stroke="#000" stroke-width="1px" fill="none">
+<path d="m78.02 72.89 12.99-7.5"/>
+<path d="m50.13 56.42 12.99-7.5"/>
+<path d="m21.77 40.22 12.99-7.5"/>
+<path d="m-5.94 24.03 12.99-7.5"/>
+</g>
+</g>
+</svg>
